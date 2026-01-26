@@ -5,13 +5,13 @@ $SoundDevices = Get-CimInstance -ClassName Win32_SoundDevice
 
 Write-Host "Querying for sound devices..."
 
-#Create an array to store the device information
+# Create an array to store the device information
 $DeviceList = @()
 
 # Loop through each device and add the information to the array
 foreach ($Device in $SoundDevices) {
 
-    #Now find the driver associated with this device's PnP ID
+    # Now find the driver associated with this device's PnP ID
     # Query the PnPSignedDriver property where the DeviceID matches 
     $Driver = Get-CimINstance -ClassName Win32_PnPSignedDriver | Where-Object {$_.DeviceID -eq $Device.PNPDeviceID}
 
